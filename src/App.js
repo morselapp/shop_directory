@@ -6,6 +6,7 @@ import './App.css';
 import $ from 'jquery';
 import Todos from './Components/Todos';
 import Shops from './Components/Shops';
+import config  from './config.js';
 class App extends Component {
   constructor() {
     super();
@@ -32,7 +33,7 @@ class App extends Component {
   }
    getShops1(searchString) {
      $.ajax({
-       url: 'http://192.168.1.5:4000/api/shop/search/'.concat(searchString),
+       url: config.url.concat('/api/shop/search/').concat(searchString),
        dataType: 'json',
        cache: false,
        success: function(data) {
@@ -50,9 +51,9 @@ class App extends Component {
   componentWillMount() {
     var origin  = window.location.origin;
     var searchString = window.location.href.replace(origin,"");
-    searchString = searchString.replace("/",""); 
+    searchString = searchString.replace("/","");
     //this.getShops();
-   console.log(searchString);
+   //console.log(searchString);
     this.getShops1(searchString);
   }
   componentDidMount() {
